@@ -75,7 +75,63 @@ where <img src="https://latex.codecogs.com/gif.latex?h"/> is the local window us
   
 ### Compacity
   
-We need compactness. From spectogram, we wrap the frequencies to a scale which is linear below <img src="https://latex.codecogs.com/gif.latex?1000~Hz%20and%20logarithmic%20above.%20**Mel-filterbanks**&lt;p%20align=&quot;center&quot;&gt;&lt;img%20src=&quot;https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?Melfbank_j(k)%20=%20&amp;#x5C;sum_{&amp;#x5C;omega%20=%200}^{256}%20Spectrogram(k,%20&amp;#x5C;omega)Melfilter_j(&amp;#x5C;omega)&quot;&#x2F;&gt;&lt;&#x2F;p&gt;%20%20Product%20from%20spectogram%20with%20triangles.%20Reduce%20dimension%20to"/>\sim 40<img src="https://latex.codecogs.com/gif.latex?.To%20**MFCC**:%20source-filter%20model&lt;p%20align=&quot;center&quot;&gt;&lt;img%20src=&quot;https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?x[n]%20=%20s[n]%20*%20v[n]&quot;&#x2F;&gt;&lt;&#x2F;p&gt;"/>s<img src="https://latex.codecogs.com/gif.latex?controls%20the%20source,%20but%20we%20want%20the%20speech%20contained%20in"/>v<img src="https://latex.codecogs.com/gif.latex?.In%20Fourier%20domain:&lt;p%20align=&quot;center&quot;&gt;&lt;img%20src=&quot;https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?X[&amp;#x5C;omega]%20=%20S[&amp;#x5C;omega]V[&amp;#x5C;omega]&quot;&#x2F;&gt;&lt;&#x2F;p&gt;%20%20&lt;p%20align=&quot;center&quot;&gt;&lt;img%20src=&quot;https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?|X[&amp;#x5C;omega]|^2%20=%20|S[&amp;#x5C;omega]|^2%20|V[&amp;#x5C;omega]|^2&quot;&#x2F;&gt;&lt;&#x2F;p&gt;%20%20&lt;p%20align=&quot;center&quot;&gt;&lt;img%20src=&quot;https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?&amp;#x5C;log(|X[&amp;#x5C;omega]|^2)%20=%20&amp;#x5C;log(|S[&amp;#x5C;omega]|^2)%20&amp;#x5C;log(|V[&amp;#x5C;omega]|^2)&quot;&#x2F;&gt;&lt;&#x2F;p&gt;%20%20###%20Discrete%20cosine%20transformTo%20separate%20the%20source%20(glottal%20from%20the%20vocal%20tract)&lt;p%20align=&quot;center&quot;&gt;&lt;img%20src=&quot;https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?X_k%20=%20&amp;#x5C;sum_{n=0}^{N-1}x_n%20&amp;#x5C;cos(&amp;#x5C;frac{&amp;#x5C;pi}{N}(n%20+%20&amp;#x5C;frac{1}{2})k)&quot;&#x2F;&gt;&lt;&#x2F;p&gt;%20%20We%20obtain%20the%20**cepstrun**%20which%20separates%20the%20vocal%20tract%20(in%20the%20first%20coefficients)%20from%20the%20glottal%20source_Question:%20some%20language%20such%20as%20Mandarin%20are%20tonal:%20depending%20on%20the%20pitch%20at%20which%20it%20is%20pronounced,%20a%20phoneme%20is%20different:__Answer:%20to%20have%20the%20pitch%20information,%20you%20need%20the%20source%20part.%20Mel-filterbanks%20is%20ok,%20even%20if%20you%20lost%20a%20bit%20of%20information.%20Other%20methods%20are%20possible,%20using%20auto-correlation%20for%20example._###%20Useful%20software%20&#x2F;%20reading:1.%20Praat2.%20Kaldi%20_most%20important%20one_3.%20HTK%20_to%20practice_4.%20Speech%20and%20Language%20Processing,%20Jurafsky%20and%20Martin%20(chapter%209.3)##%20Speech%20recognition%20as%20a%20statistical%20problemFind%20the%20most%20likely%20transcription:&lt;p%20align=&quot;center&quot;&gt;&lt;img%20src=&quot;https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?&amp;#x5C;widehat{W}%20=%20&amp;#x5C;arg%20&amp;#x5C;max_W%20P(W%20&amp;#x5C;mid%20X)&quot;&#x2F;&gt;&lt;&#x2F;p&gt;%20%20Using%20a%20generativ%20model%20(**acoustic%20model**"/>P(X\mid W)<img src="https://latex.codecogs.com/gif.latex?+%20**language%20model**"/>P(W)<img src="https://latex.codecogs.com/gif.latex?)&lt;p%20align=&quot;center&quot;&gt;&lt;img%20src=&quot;https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?&amp;#x5C;widehat{W}%20=%20&amp;#x5C;arg%20&amp;#x5C;max_W%20P(X%20&amp;#x5C;mid%20W)%20P(W)&quot;&#x2F;&gt;&lt;&#x2F;p&gt;%20%20##%20Acoustic%20modelingGenerative%20speech%20features%20according%20speech%20content:"/>P(X \mid W)<img src="https://latex.codecogs.com/gif.latex?.Condition%20on%20sequences%20of%20phonemes%20instead%20of%20sequences%20of%20words:&lt;p%20align=&quot;center&quot;&gt;&lt;img%20src=&quot;https:&#x2F;&#x2F;latex.codecogs.com&#x2F;gif.latex?P(X%20&amp;#x5C;mid%20W)%20=%20&amp;#x5C;sum_{Q}P(X%20&amp;#x5C;mid%20Q)P(Q%20&amp;#x5C;mid%20W)&quot;&#x2F;&gt;&lt;&#x2F;p&gt;%20%20where"/>Q<img src="https://latex.codecogs.com/gif.latex?:%20valid%20pronounciation%20of%20W%20and"/>P(X \mid Q)$ is modeled by a HMM. In states: transcription (phonemes, words ?) and in emission:.
+We need compactness. From spectogram, we wrap the frequencies to a scale which is linear below <img src="https://latex.codecogs.com/gif.latex?1000~Hz"/> and logarithmic above. **Mel-filterbanks**
+  
+<p align="center"><img src="https://latex.codecogs.com/gif.latex?Melfbank_j(k)%20=%20&#x5C;sum_{&#x5C;omega%20=%200}^{256}%20Spectrogram(k,%20&#x5C;omega)Melfilter_j(&#x5C;omega)"/></p>  
+  
+Product from spectogram with triangles. Reduce dimension to <img src="https://latex.codecogs.com/gif.latex?&#x5C;sim%2040"/>.
+  
+To **MFCC**: source-filter model
+<p align="center"><img src="https://latex.codecogs.com/gif.latex?x[n]%20=%20s[n]%20*%20v[n]"/></p>  
+  
+  
+<img src="https://latex.codecogs.com/gif.latex?s"/> controls the source, but we want the speech contained in <img src="https://latex.codecogs.com/gif.latex?v"/>.
+In Fourier domain:
+  
+<p align="center"><img src="https://latex.codecogs.com/gif.latex?X[&#x5C;omega]%20=%20S[&#x5C;omega]V[&#x5C;omega]"/></p>  
+  
+  
+<p align="center"><img src="https://latex.codecogs.com/gif.latex?|X[&#x5C;omega]|^2%20=%20|S[&#x5C;omega]|^2%20|V[&#x5C;omega]|^2"/></p>  
+  
+  
+<p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;log(|X[&#x5C;omega]|^2)%20=%20&#x5C;log(|S[&#x5C;omega]|^2)%20&#x5C;log(|V[&#x5C;omega]|^2)"/></p>  
+  
+  
+### Discrete cosine transform
+  
+  
+To separate the source (glottal from the vocal tract)
+<p align="center"><img src="https://latex.codecogs.com/gif.latex?X_k%20=%20&#x5C;sum_{n=0}^{N-1}x_n%20&#x5C;cos(&#x5C;frac{&#x5C;pi}{N}(n%20+%20&#x5C;frac{1}{2})k)"/></p>  
+  
+We obtain the **cepstrun** which separates the vocal tract (in the first coefficients) from the glottal source
+  
+_Question: some language such as Mandarin are tonal: depending on the pitch at which it is pronounced, a phoneme is different:_
+_Answer: to have the pitch information, you need the source part. Mel-filterbanks is ok, even if you lost a bit of information. Other methods are possible, using auto-correlation for example._
+  
+### Useful software / reading:
+  
+1. Praat
+2. Kaldi _most important one_
+3. HTK _to practice_
+4. Speech and Language Processing, Jurafsky and Martin (chapter 9.3)
+  
+## Speech recognition as a statistical problem
+  
+  
+Find the most likely transcription:
+<p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;widehat{W}%20=%20&#x5C;arg%20&#x5C;max_W%20P(W%20&#x5C;mid%20X)"/></p>  
+  
+Using a generativ model (**acoustic model** <img src="https://latex.codecogs.com/gif.latex?P(X&#x5C;mid%20W)"/> + **language model** <img src="https://latex.codecogs.com/gif.latex?P(W)"/>)
+<p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;widehat{W}%20=%20&#x5C;arg%20&#x5C;max_W%20P(X%20&#x5C;mid%20W)%20P(W)"/></p>  
+  
+  
+## Acoustic modeling
+  
+Generative speech features according speech content: <img src="https://latex.codecogs.com/gif.latex?P(X%20&#x5C;mid%20W)"/>.
+Condition on sequences of phonemes instead of sequences of words:
+<p align="center"><img src="https://latex.codecogs.com/gif.latex?P(X%20&#x5C;mid%20W)%20=%20&#x5C;sum_{Q}P(X%20&#x5C;mid%20Q)P(Q%20&#x5C;mid%20W)"/></p>  
+  
+where <img src="https://latex.codecogs.com/gif.latex?Q"/>: valid pronounciation of W and <img src="https://latex.codecogs.com/gif.latex?P(X%20&#x5C;mid%20Q)"/> is modeled by a HMM. In states: transcription (phonemes, words ?) and in emission:.
   
 ### Word based HMMs
   
