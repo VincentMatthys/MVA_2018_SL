@@ -74,14 +74,18 @@ To **MFCC**: source-filter model
 $$
 x[n] = s[n] * v[n]
 $$
+
 $s$ controls the source, but we want the speech contained in $v$.
 In Fourier domain:
+
 $$
 X[\omega] = S[\omega]V[\omega]
 $$
+
 $$
 |X[\omega]|^2 = |S[\omega]|^2 |V[\omega]|^2
 $$
+
 $$
 \log(|X[\omega]|^2) = \log(|S[\omega]|^2) \log(|V[\omega]|^2)
 $$
