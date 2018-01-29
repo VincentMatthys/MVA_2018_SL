@@ -1,5 +1,7 @@
 # Algorithms for speech and natural language processing (MVA 2018)
 
+[Link to github](https://github.com/edupoux/MVA_2018_SL)
+
 ## Contact information
 For any question/request related to this course, please send an email to this address: mva.speech.language@gmail.com
 
@@ -8,7 +10,7 @@ For any question/request related to this course, please send an email to this ad
 ## Course Objectives
 
 Speech and natural language processing is a subfield of artificial intelligence used in an increasing number of applications; yet, while some aspects are on par with human performances, others are lagging behind. This course will present the full stack of speech and language technology, from automatic speech recognition to parsing and semantic processing. The course will present, at each level, the key principles, algorithms and mathematical principles behind the state of the art, and confront them with what is know about human speech and language processing. Students will acquire detailed knowledge of the scientific issues and computational techniques in automatic speech and language processing and will have hands on experience in implementing and evaluating the important algorithms.
- 
+
 Topics:
 - speech features & signal processing
 - hidden markov & finite state modeling
@@ -23,7 +25,7 @@ Basic linear algebra, calculus, probability theory
 
 ## Organization
 
-### Eight courses 
+### Eight courses
 The courses take place on monday, from **9am to 12am**. _Be on time!_
 
 - #1 Jan 22 (235B).     Introduction (Sagot & Dupoux)
@@ -40,15 +42,13 @@ The courses take place on monday, from **9am to 12am**. _Be on time!_
 (Actes): 45 rue d'Ulm, Paris 75005, Salle des actes, 1st Floor, right.
 (Toqueville): 61 Avenue du Président Wilson, 94230 Cachan, Batiment d'Alembert, Amphi Tocqueville.
 
-The course materials (PDFs, etc.) are listed in the subdirectories numbered #1 .. #8. 
+The course materials (PDFs, etc.) are listed in the subdirectories numbered #1 .. #8.
 
 ### Practical assignments (TD)
-The practical assignments are given on the courses #2 to #6. For the assignments, students are provided with the necessary data and Python code, either as a list of requirements to install or in the form of a disk image (.ova) to be mounted and booted from a virtual machine. They will hand in their source code and a max two page report, detailing their work, the difficulties encountered and the results. 
+The practical assignments are given on the courses #2 to #6. For the assignments, students are provided with the necessary data and Python code, either as a list of requirements to install or in the form of a disk image (.ova) to be mounted and booted from a virtual machine. They will hand in their source code and a max two page report, detailing their work, the difficulties encountered and the results.
 
-If you wish to use the Virtual Machine (may be necessary for people on windows for example), please install *VirtualBox* (https://www.virtualbox.org/) on your machine and load up the provided *disk_image.ova* before coming to the first TD. 
+If you wish to use the Virtual Machine (may be necessary for people on windows for example), please install *VirtualBox* (https://www.virtualbox.org/) on your machine and load up the provided *disk_image.ova* before coming to the first TD.
 
 ### Quizzes
 
 During the courses, we will use on-line quizzes (on the smartphone/computer) to probe comprehension and trigger discussion.
-
-
