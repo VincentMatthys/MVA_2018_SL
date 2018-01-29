@@ -63,7 +63,7 @@ $$
 where $h$ is the local window used
 
 ### Compacity
-We need compactness. From spectogram, we wrap the frequencies to a scale which is linear below $1000~Hz and logarithmic above. **Mel-filterbanks**
+We need compactness. From spectogram, we wrap the frequencies to a scale which is linear below $1000~Hz$ and logarithmic above. **Mel-filterbanks**
 
 $$
 Melfbank_j(k) = \sum_{\omega = 0}^{256} Spectrogram(k, \omega)Melfilter_j(\omega)
