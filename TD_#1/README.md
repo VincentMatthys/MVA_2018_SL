@@ -4,6 +4,13 @@ MVA - Algorithms for Speech and NLP TD
 ## Contact Information
 For any question/request related to this course, please send an email to this address: mva.speech.language@gmail.com
 
+## Instructions
+Different functions to load data.
+Wrong parameters entered by purpose.
+You have to tune those parameters, and try at least 2 or 3 experiments as described at the end of the notebook.
+**Deadline**: Before next class.
+Try different models, output some results, print precision and send the ipynb to mva.speech.language@gmail.com
+
 ## TD
 For this TD you will need python-anaconda, or virtualbox.
 If you decide to use the virtual machine, please install it before coming to class, and try it out at least once before coming to class, as it may be slow.
