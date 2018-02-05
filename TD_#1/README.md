@@ -10,7 +10,7 @@ Wrong parameters entered by purpose.
 You have to tune those parameters, and try at least 2 or 3 experiments as described at the end of the notebook.
 **Deadline**: Before next class.
 Try different models, output some results, print precision and send the ipynb to mva.speech.language@gmail.com
-=======
+
 ## Handing the assignment
 
 Send your notebook with your modifications, printed results and comments (in markdown cells) to mva.speech.language@gmail.com before the next class on Monday, February 5th. Please start the title of your email with "TP1".
