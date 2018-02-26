@@ -148,6 +148,8 @@ We may have extracted from the tree bank that _effet_ must indicate _sur_. We ha
 + **Right-arc is changed**, it does not discard $w_i$ anymore. We will decompose right-arc into 2 actions: creating the arc and pospotne the reduction of $w_i$ to another new action
 + **Reduction**
 
+**Create directly the root when encountered, w/o waiting the end of the sentence**.
+
 ## Drawbacks of the arc-eager algorithm
 + The arc-eager system has a weaker soundness result than the arc-standard system. Not guaranty to have a $2n$. Bounded by $3n$.
 + it does not guarantee the output to be a dependency tree, only a sequence of (unconnected) trees (a forest). If it happens, just chose one of the root of one of the different trees you have created and attach it to other trees.
@@ -166,8 +168,34 @@ Two issues for spoken language processing:
 ## Disfluencies
 Three types:
 + filled pauses (FP): e.g. uh, um
-+ discourse markers and parentheticals (DP): e.g. I meanm you know
-+ Reparandum (edited phrase): e.g _I want a flight to Boston (reparandum) uh (FP) I mean (DP) to Denver (reparir)_
++ discourse markers and parentheticals (DM): e.g. I meanm you know
++ Reparandum (edited phrase): e.g _I want a flight to Boston (reparandum) uh (FP) I mean (DM) to Denver (reparir)_
 
 ## Processing disfluent sentences
 Firt edit the sentence, and then parse it. However it is not necessary the best option. Using the joint architecture, disfluency detection and parsing.
+
+## Rasooli and Tetrault (2014) proposal
+Three new actions:
++ IJ (discard from the queue without creating any arc)
++ DM (removing from the queue without creatng any arc)
++ RP, repair (remove every we build from position x..y)
+
+# Neural transition-based parsing
+Until now: no discussion about the classifier selecting the right action. When doing NLP, use machine learning to create the classifier. It is not the core of what we are interessted in.
+Until a few years ago, most people used linear classifiers.
+
+## Example of neural arc-standard algorithm
+Replace the feature-based action selection module by a neural network.
+They embedded PoS to learn the structure (noun / pronoun play similar roles, etc...)
+
+## Example of neural arc-standard algorithm: experimental results
+Small improvement.
+
+# Practical assignment 5
+No tolerance to delay. One week delay for others, one point penalty per day after one week. No coding, will count 4 times less than other assignments
+
+## Goal
+Understand the current state of the art machine translation.
+
+Use whicever (Freely available) machine translation system to investigate the following questions:
++ What is the influence of the context. _Sheep (alive), mutton (when it's cooked)_.
