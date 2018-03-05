@@ -113,10 +113,51 @@ No answer?
 In 2016, neural models outperform PBSMT in many language paris at WMT'16.
 Paradigm shift since 2014.
 
+## Generalities
+
 ### What is the key of the sucess of NN in MT?
 + representation of words and sentences in a continuous space: the network can learn relations between the examples and generalize to unobserved events
 + deep neural networks can learn hierarchical features: the network lean automatically how to extract information, how to modify it and how to produce an output without any human guidance
 
-#### Learning hierarchical representations
+### Learning hierarchical representations
 Speech recognition: `wave -> spectral band -> sound -> phone -> word -> sentence`. End-to-end. No need to optimize intermediate step.
 Text processing: `char -> word -> word group -> clause -> sentence -> story`
+
+### What about Deep Neural Networkds in NLP?
++ Operate on a low level representation of the data
++ Use very deep architectures to learn hierarchical representations of the data: how to structure the input? n-grams, syntactical or semantic graphs
++ Structure the network to adapt it to the problem: Recurrent NN (LSTM, GRU) are very popular
++ Trained end-to-end: sentence generation is often ambigious, without unique solution
+
+### Word Embeddings
+Learn emneddings in a way that similar words are nearby in that space. The notion of similarity may depend on the application (there is no probably "universal word embedding")
+
+## Continuous Space Language Model (CSLM)
+`continuous` is the key here.
+Three words. Embedding in the space and compute joint probability of those three words.
+You learn word embedding in the same time.
+Backprop training and cross-entropy, with random initialization.
+
+## Recurrent Network for LM
+Each word in conditioned on all preceding words.
+LSTM to avoid gradient vanishing
+A special token `NULL_WORD` is used to handle exceptions.
+Large context windows allowed.
+
+## Handling Sequences of Words
+Generalize NML to NMT: encode the phrase source to some representation, and then decode. The encoder processes the source sentence and creates an compact representation.
+
+## Before Seq2seq
+RNN encocder-decoder for SMT, Cho et al.
+Encoder: no output layer, no loss function: gradients are back-propagated from the decoder (all through the decoder, the encoder part only have information through the compact representation). It`s a long way!
+Almost reach phrase-based Neural network systems.
+
+## Seq2Seq
+No flat anymore.
+Attention mechanism.
+
+## Neual MT: first conclusions
+In princple, the decoder is an LM conditioned on the source sentence.
+Long sentences encoded in one high-dimensional vector is tricky, which leads to decreses in performance in BLEU score with sentence length: the encoder doesn't remember the entire sentence (use of **attention mechanism**)
+
+## Attention mechanism
