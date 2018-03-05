@@ -1,0 +1,75 @@
+\documentclass[12pt,a4paper,onecolumn]{article}
+\input{packages}
+\input{macros}
+
+% ------------------------ General informations --------------------------------
+\title{MVA - NLP - TD5}
+\author{Vincent Matthys}
+\graphicspath{{images/}{../images/}} % For the images path
+% ------------------------------------------------------------------------------
+
+
+\begin{document}
+
+\begin{tabularx}{0.9\textwidth}{@{} l X r @{} }
+	{\textsc{Master MVA}}  &  & \textsc{Vincent Matthys} \\
+	% \textsc{} &  & {ENS Paris Saclay}       \\
+\end{tabularx}
+% \vspace{1.5cm}
+\begin{center}
+
+	\rule[11pt]{5cm}{0.5pt}
+
+	\textbf{\LARGE \textsc{TD5 - Practical assignment 5}}
+	% \vspace{0.5cm}
+
+	Vincent Matthys
+
+	vincent.matthys@ens-paris-saclay.fr
+
+	\rule{5cm}{0.5pt}
+
+	% \vspace{1.5cm}
+\end{center}
+
+
+Dans le cadre de la compréhension de l'état de l'art en traduction automatique, on a testé \href{https://translate.google.fr/m/translate}{Google Translate (GT)} et \href{https://www.deepl.com/translator}{DeepL (DL)}.
+
+\section{Phrase complexe}
+
+\enquote{There was Eru, the One, who in Arda is called Iluvatar; and he made first the Ainur, the Holy Ones, that were the offspring of his thought, and they were with him before aught else was made.}
+
+Voici la première phrase du Silmarillion, roman de J. R. R. Tolkien écrit en anglais et traduite :
+\begin{itemize}
+	\item par GT avec le point final - \textit{Il y avait Eru, l'Un, qui à Arda s'appelle Iluvatar; et il fit d'abord les Ainur, les saints, qui étaient la progéniture de sa pensée, et ils étaient avec lui avant que tout autre ait été fait.}
+	\item par GT sans le point final - \textit{Il y avait Eru, l'Un, qui à Arda s'appelle Iluvatar; et il a fait d'abord les Ainur, les Saints, qui étaient la progéniture de sa pensée, et ils étaient avec lui avant tout autre chose a été fait}
+	\item par DL avec et sans point final - \textit{Il y avait Eru, Celui qui à Arda s'appelait Iluvatar; et il fit d'abord l'Ainur, les Saints, qui étaient les descendants de sa pensée, et ils étaient avec lui avant que rien d'autre ne fût fait.}
+\end{itemize}
+On remarque d'une part l'importance du point final dans la traduction émise par GT, au niveau des temps des verbes choisis, et dans la syntaxe après la proposition coordonnée introduite par \enquote{and} indiquant que le PoS de \enquote{before} a changé en cours entre les deux traductions, et indiquant probablement que le parsing et le part-of-speech tagging sont conjointement effectués.
+On remarque que les noms propres sont correctement laissés à l'identique pour les deux systèmes, même si le choix paraît plus littéral pour \enquote{the One} de la part de GT. A l'inverse, DL n'a pas associé \enquote{the Ainur} au pluriel de la proposition juxtaposée s'y rapportant, délaissant ainsi le pluriel du déterminant \enquote{the}. On note aussi qu'étrangement \enquote{the Holy Ones} perd sa majuscule lorsque le point final est présent dans la traduction de GT, pour une raison inconnue.
+
+\section{Influence du contexte}
+
+\enquote{Il aime bien le mouton. Surtout les côtelettes de mouton.} est traduit par DL et GL en \textit{He likes sheep. Especially the lamb chops.}. Pour les deux systèmes, le contexte n'influe pas sur le choix de la traduction de \enquote{mouton} malgré la référence à de la nouriture, quelle soit antérieure ou postérieure. De façon similaire, \enquote{A mouse appeared. It looked hungry} est traduit par les deux systèmes en \textit{Une souris est apparue. Il avait l'air affamé.}, et le contexte ne permet pas de choisir le genre correct du pronom traduit de \enquote{it}. Même en transformant les deux phrases en les reliant par une conjonction de coordination le résultat reste identique.
+
+\section{Expressions idiomatiques}
+\enquote{Don't judge a book by its cover} est traduit par GT et DL en \textit{Ne jugez pas un livre par sa couverture.}, en ignorant donc l'expression idiomatique anglaise. En revanche, \enquote{Avoir d'autres chats à fouetter} est reconnu par DL comme une expression idiomatique, et une translation correcte \textit{Have other fish to fry.} est proposée, en précisant l'équivalence des deux expressions idiomatiques, Une expression littérale est également proposée \textit{Have other cats to whip.}. C'est une méthode qui permet de proposer la traduction littérale et l'expression idiomatique lorsqu'elle est détectée.
+
+
+\section{Influence de la paire de langages}
+La question \enquote{What is the influence of a language pair?} a été traduite en français puis en polonais et enfin re-traduite en anglais, on obtient :
+\begin{itemize}
+	\item pour GT : \textit{How does the language pair affect?}. Ce n'est pas identique à la question de départ, même si le sens reste conservé.
+	\item pour DL : \textit{What is the influence of a language pair?} qui est exactement la question initiale.
+\end{itemize}
+Malheureusement DL ne propose pas encore de langage \enquote{rare}, La même traduction en remplacant le polonais par le sesotho (environ 5 millions de locuteurs, une des langues avec le moins de locuteurs proposée par GT) produit, selon GT \textit{What is the second language influence?}, qui est plus éloigné de l'originale qu'en passant par le polonais.
+
+\section{Syntaxe des traductions}
+Comme montré, le genre de pronom neutre, le temps des verbes, et le PoS des mots peuvent varier entre la traduction automatique et celle attendue, et entre GT et DL. Ce qui indique des méthodes de parsing et de PoS différents entre ces deux systèmes. On peut par exemple mettre en exergue la différence de choix de temps dans la tranduction de \enquote{It's bad that i'm going out with him} :
+\begin{itemize}
+	\item par GT : \textit{C'est mauvais que je sors avec lui}
+	\item par DL : \textit{C'est mal que je sorte avec lui.}
+\end{itemize}
+GT n'utilise pas la construction de avis + proposition au subjonctif pour cet exemple, alors que pour un autre, \enquote{It's too bad it's raining.}, dont la traduction par GT et DL est \textit{C'est dommage qu'il pleuve}, avec le subjonctif. La traduction de GT semble donc plus littérale que celle de DL qui semble dégager les règles syntaxiques des langues cibles.
+
+\end{document}
