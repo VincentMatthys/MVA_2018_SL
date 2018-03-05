@@ -107,7 +107,7 @@ Drawbacks:
 Do erroneous source sentences in the training data affect the performance of an PBSMT system ?
 
 _Online question 1: A, No, because they only appear rarely. B, No, because PBMST systems are robust to spelling errors. C, Yes, but only when the language of the source sentence is wrong. D, No, because wrong source words won't be used for test sentences. E, Yes, always._
-No answer?
+_A and D: wrong language in train, not used in test so doesn't matter. And A because we do statistics, so 1/1000 doesn't matter_
 
 # Neural networks in machine translations
 In 2016, neural models outperform PBSMT in many language paris at WMT'16.
@@ -161,3 +161,30 @@ In princple, the decoder is an LM conditioned on the source sentence.
 Long sentences encoded in one high-dimensional vector is tricky, which leads to decreses in performance in BLEU score with sentence length: the encoder doesn't remember the entire sentence (use of **attention mechanism**)
 
 ## Attention mechanism
+Which weight should I give to the hidden states of the input encoder for the decoder. It's like a soft alignment: linear combinaison of all reresentation of the sentence. If you do this, the length of the sentence doesn't matter anymore, because the network learns to zoom on a specific part of the sentence (which words are important).
++ each target word is conditioned on a linear combination of these vectors
++ in practice, this (soft) attention is focused on few words
++ the weights are also learned by the neural network.
+
+## Recent work: NMT Challenges
+Use of very deep neural MT
+How to use unlabeled, eg. monolingual data (without translation)
+Handling of unknown words: proper names (should be copied or transliterated), morphological variants of known words
+
+### Very Deep Neural MT
+
+1. Deep Recurrent Models with Fast-Forward Connections for Neural Machine Translation, Ji Whou et al, TACL'16.
+Significant improvements over vanilla NMT
+2. Google's Neural Machine Translation System: Bridging the Gap between Human and Machine Translation.
+Neural MT now used in production.
+
+### Neural MT with subword Units
+Decompose words into smaller elementary units.. More words can be covered with the same vocabular, and future new words are likely to be covered.
+Use of n-grams or byte pair encoding
+Other possibilities:
++ variable length subwords (_byte pair encoding (PBE)_)
++ character-based neural MT. Use of CNN. The character-level decoder outperforms PBE models and allow to handle spelling errors. And even handle many different languages at the same time: the encoder can encode all european languages with $\approx 100$ characters (esxcept for greek and russian)
+
+
+_Online question 2: How the input sentence is internally represented in an neural MT system with attention? A by the last state of the encoer, B_
+_Answer: D_
